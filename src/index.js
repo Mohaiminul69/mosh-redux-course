@@ -26,8 +26,12 @@ const store = configureStore();
 // store.dispatch(userAdded({ name: "Dew Haven" }));
 // store.dispatch(bugAddedToUser({ userId: 1, bugId: 3 }));
 store.dispatch({
-  type: "error",
-  payload: { message: "Opps an error occured" },
+  type: "apiCallBegan",
+  payload: {
+    url: "/bugs",
+    onSuccess: "bugsReceived",
+    onError: "bugsRequestFailed",
+  },
 });
 
 const bugs = getBugsByUser(1)(store.getState());
