@@ -1,5 +1,4 @@
-import reducer from './reducer';
-
+import reducer from "./reducer";
 function createStore(reducer) {
   let state;
   let listeners = [];
@@ -10,19 +9,14 @@ function createStore(reducer) {
 
   function dispatch(action) {
     state = reducer(state, action);
-
-    for (let listener of listeners) listener();
+    listeners.forEach((listener) => listener());
   }
 
   function getState() {
     return state;
   }
 
-  return {
-    subscribe,
-    dispatch,
-    getState,
-  };
+  return { getState, dispatch, subscribe };
 }
 
 export default createStore(reducer);

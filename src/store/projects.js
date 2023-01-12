@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 let lastId = 0;
 
 const slice = createSlice({
-  name: 'projects',
+  name: "projects",
   initialState: [],
   reducers: {
     projectAdded: (projects, action) => {
@@ -15,5 +15,6 @@ const slice = createSlice({
   },
 });
 
-export const { projectAdded } = slice.actions;
 export default slice.reducer;
+
+export const { projectAdded } = slice.actions;

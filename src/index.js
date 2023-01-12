@@ -1,33 +1,35 @@
-// import * as tvActions from './store/module';
+import configureStore from "./store/configureStore";
+import {
+  bugAdded,
+  bugAddedToUser,
+  bugRemoved,
+  bugResolved,
+  getBugsByUser,
+  getUnresolvedbugs,
+} from "./store/bugs";
+import { projectAdded } from "./store/projects";
+import { userAdded } from "./store/users";
 
-// tvActions.turnOn();
-// import { assignBugToUser, getUnresolvedBugs, loadBugs } from './store/bugs';
-// import configureStore from './store/configureStore';
+const store = configureStore();
 
-// const store = configureStore();
+// store.subscribe(() => console.log("Store Change hoise "));
 
-// store.dispatch(addBug({ description: 'a' }));
-// store.dispatch(loadBugs());
-// store.dispatch(resolveBug(2));
-// setTimeout(() => store.dispatch(assignBugToUser(1, 4)), 2000);
-// setTimeout(() => console.log(getUnresolvedBugs(store.getState())), 4000);
-// store.dispatch({
-//   type: 'error',
-//   payload: { message: 'An error occured' },
-// });
+// store.dispatch(projectAdded({ name: "Project One" }));
+// store.dispatch(projectAdded({ name: "Project Two" }));
 
-// store.subscribe(() => {
-//   console.log('Store changed!');
-// });
-
-// store.dispatch(userAdded({ name: 'User 1' }));
-// store.dispatch(userAdded({ name: 'User 2' }));
-// store.dispatch(projectAdded({ name: 'Project 1' }));
-// store.dispatch(bugAdded({ description: 'Bug 1' }));
-// store.dispatch(bugAdded({ description: 'Bug 2' }));
-// store.dispatch(bugAdded({ description: 'Bug 3' }));
-// store.dispatch(bugAssignedToUser({ bugId: 1, userId: 1 }));
+// store.dispatch(bugAdded({ des: "bug 1 dispatched again" }));
+// store.dispatch(bugAdded({ des: "bug 2 dispatched again" }));
+// store.dispatch(bugAdded({ des: "bug 3 dispatched again" }));
+// store.dispatch(bugAdded({ des: "bug 4 dispatched again" }));
+// store.dispatch(bugRemoved({ id: 2 }));
 // store.dispatch(bugResolved({ id: 1 }));
+// store.dispatch(userAdded({ name: "Dew Haven" }));
+// store.dispatch(bugAddedToUser({ userId: 1, bugId: 3 }));
+store.dispatch({
+  type: "error",
+  payload: { message: "Opps an error occured" },
+});
 
-// const bugs = getBugsbyUser(1)(store.getState());
-// console.log(bugs);
+const bugs = getBugsByUser(1)(store.getState());
+
+console.log(bugs);
