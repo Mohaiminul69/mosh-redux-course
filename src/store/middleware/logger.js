@@ -1,5 +1,5 @@
 const logger = (param) => (store) => (next) => (action) => {
-  console.log("Login", param);
+  console.log("Logging", param);
   next(action);
 };
 

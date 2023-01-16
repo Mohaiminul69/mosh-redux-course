@@ -1,39 +1,38 @@
-import configureStore from "./store/configureStore";
+import configurteStore from "./store/configureStore";
 import {
   bugAdded,
-  bugAddedToUser,
   bugRemoved,
   bugResolved,
-  getBugsByUser,
-  getUnresolvedbugs,
-} from "./store/bugs";
-import { projectAdded } from "./store/projects";
-import { userAdded } from "./store/users";
+  getUnresolvedBugs,
+  bugAssignedToUser,
+  getbugsByUser,
+  loadBugs,
+} from "./store/slices/bugSlice";
+import { projectAdded } from "./store/slices/projectSlice";
+import { userAdded } from "./store/slices/userSlice";
 
-const store = configureStore();
+const store = configurteStore();
 
-// store.subscribe(() => console.log("Store Change hoise "));
+store.dispatch(loadBugs());
 
-// store.dispatch(projectAdded({ name: "Project One" }));
-// store.dispatch(projectAdded({ name: "Project Two" }));
+// const unsubscribe = store.subscribe(() =>
+//   console.log("store change hoy", store.getState())
+// );
 
-// store.dispatch(bugAdded({ des: "bug 1 dispatched again" }));
-// store.dispatch(bugAdded({ des: "bug 2 dispatched again" }));
-// store.dispatch(bugAdded({ des: "bug 3 dispatched again" }));
-// store.dispatch(bugAdded({ des: "bug 4 dispatched again" }));
-// store.dispatch(bugRemoved({ id: 2 }));
-// store.dispatch(bugResolved({ id: 1 }));
-// store.dispatch(userAdded({ name: "Dew Haven" }));
-// store.dispatch(bugAddedToUser({ userId: 1, bugId: 3 }));
-store.dispatch({
-  type: "apiCallBegan",
-  payload: {
-    url: "/bugs",
-    onSuccess: "bugsReceived",
-    onError: "bugsRequestFailed",
-  },
-});
+// store.dispatch(bugAdded({ des: "Bug 1 Created" }));
+// store.dispatch(bugAdded({ des: "Bug 2 Created" }));
+// store.dispatch(bugAdded({ des: "Bug 3 Created" }));
+// store.dispatch(bugAdded({ des: "Bug 4 Created" }));
+// store.dispatch(bugRemoved({ id: 1 }));
+// store.dispatch(bugResolved({ id: 2 }));
+// store.dispatch(projectAdded({ name: "Project 1" }));
+// store.dispatch(userAdded({ name: "Dew" }));
+// store.dispatch(userAdded({ name: "Haven" }));
+// store.dispatch(bugAssignedToUser({ userId: 1, bugId: 3 }));
+// store.dispatch(bugAssignedToUser({ userId: 2, bugId: 4 }));
 
-const bugs = getBugsByUser(1)(store.getState());
+// const unresolvedBugs = getUnresolvedBugs(store.getState());
 
-console.log(bugs);
+// const bugsByUser = getbugsByUser(1)(store.getState());
+
+// console.log(bugsByUser);
